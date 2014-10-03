@@ -8,7 +8,7 @@ public class Driver
 	s = t.tri3(5);
 	String d = new String();
 	// d = t.diamond(5);
-	d = t.tri4(6);
+	d = t.diamond(5);
 	System.out.println(s);
 	System.out.println(d);
 	

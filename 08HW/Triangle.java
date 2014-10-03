@@ -53,26 +53,26 @@ public class Triangle
 		s = s + "\n";
 	    }
 
-	height = (h - 1)/ 2; 
+	height = (h - 1)/ 2;
+	numOfSpaces = 1;
 	numOfAsterisks = numOfAsterisks - 4;
 	    while (height > 0)
 		{
 		    numOfA2 = numOfAsterisks;
-		    numOfSpaces = (2 * height) - numOfAsterisks;
-		    while(numOfA2 > 0)
-			{
-			    s = s + "*";
-			    numOfA2--;
-			}
-	
-		    while (numOfSpaces > 0)
+		     for (int i2 = numOfSpaces; i2 > 0; i2--)
 			{
 			    s = s + " ";
-			    numOfSpaces--;
 			}
+		    for (int i = numOfAsterisks; i > 0; i--)
+			{
+			    s = s + "*";
+			    
+			}
+		    
 		    numOfAsterisks = numOfAsterisks - 2;
 		    height--;
 		    s = s + "\n";
+		    numOfSpaces++;
 		}
 	return s;
     }
