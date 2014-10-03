@@ -58,7 +58,7 @@ public class Triangle
 	    while (height > 0)
 		{
 		    numOfA2 = numOfAsterisks;
-		    numOfSpaces = h / 2 - numOfAsterisks + 1;
+		    numOfSpaces = (2 * height) - numOfAsterisks;
 		    while(numOfA2 > 0)
 			{
 			    s = s + "*";
@@ -76,5 +76,22 @@ public class Triangle
 		}
 	return s;
     }
-    
+    public String tri4(int h)
+    {
+	String s = new String();
+	int height = h;
+	int numOfA;
+	while (height > 0)
+	    {
+		numOfA = height;
+		while (numOfA > 0)
+		    { 
+			s = s + "*";
+			    numOfA--;
+		    }
+		height--;
+		s = s + "\n";
+	    }
+	return s;
+    }
 }

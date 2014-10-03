@@ -7,8 +7,10 @@ public class Driver
 	t = new Triangle();
 	s = t.tri3(5);
 	String d = new String();
-	d = t.diamond(5);
+	// d = t.diamond(5);
+	d = t.tri4(6);
 	System.out.println(s);
 	System.out.println(d);
+	
     }
 }
