@@ -2,15 +2,10 @@ public class Driver
 {
     public static void main(String[] args)
     {
-	Triangle t;
+	Frame f;
 	String s = new String();
-	t = new Triangle();
-	s = t.tri3(5);
-	String d = new String();
-	// d = t.diamond(5);
-	d = t.diamond(5);
+	f = new Frame();
+	s = f.frame(5, 4);
 	System.out.println(s);
-	System.out.println(d);
-	
     }
 }
