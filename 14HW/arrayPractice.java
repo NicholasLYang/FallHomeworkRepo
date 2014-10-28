@@ -68,16 +68,120 @@ public class arrayPractice
 	System.out.println(as.maxValue());
 	
     }
-    public int[] randomIntArray () 
+    
+ public int sum67(int[] nums) 
+{
+  int i;
+  int output = 0;
+  boolean count = true;
+  for (i = 0 ; i < nums.length ; i++ )
+  {
+    if (nums[i] == 6)
     {
-	Random r = new Random();
-	int i;
-	int[] nums = new int[100];
-	for (i = 0;i < 100; i++)
-	    {
-		nums[i] = r.nextInt(75) + 75;
-	    }
-	return nums;
+       count = false;
     }
+    if (count)
+    {
+      output = output + nums[i];
+    }
+    if (nums[i] == 7)
+    {
+      
+      count = true;
+    }
+  
+  }
+  return output;
+       
+}
+
+public boolean more14(int[] nums) {
+  int numOf1 = 0;
+  int numOf4 = 0;
+  for (int i = 0; i < nums.length; i++)
+  {
+    if (nums[i] == 1)
+    {
+    numOf1++;
+    }
+    if (nums[i] == 4)
+    {
+    numOf4++;
+    }
+  }
+  return numOf1 > numOf4;
+}
+
+public int[] tenRun(int[] nums) 
+{
+
+    int c = 5;
+
+  for (int i = 0; i < nums.length; i++)
+  {
+
+    if (nums[i] % 10 == 0)
+    {
+      c = nums[i];
+    }
+    if (c == 5)
+    {}
+    if (c % 10 == 0)
+    {
+      nums[i] = c;
+    }
+        
+      
+   
+ }
+  return nums;
+}
+
+public boolean tripleUp(int[] nums) {
+  for (int i = 0; i + 2 < nums.length; i++)
+  {
+    if ( nums[i] + 1 == nums[i + 1] && nums[i] + 2 == nums[i + 2])
+    { return true; }
+  }
+  return false;
+}
+
+public boolean canBalance(int[] nums) {
+for (int i = 0; i < nums.length; i++)
+{
+ int sum1 = 0;
+ int sum2 = 0;
+ for (int j = 0; j < i; j++)
+ {
+   sum1 = nums[j] + sum1;
+ }
+ for (int k = i; k < nums.length; k++)
+ {
+  sum2 = nums[k] + sum2;
+ }
+ if (sum1 == sum2)
+ {return true;}
+ 
+}
+return false;
+}
+
+
+public int[] seriesUp(int n) 
+{
+int[] output = new int[n * (n + 1)/2];
+for (int numOfTerms = 0; numOfTerms < n; numOfTerms++)
+{ 
+    int x = numOfTerms * (numOfTerms + 1)/2;
+for (int i = 0; i <= numOfTerms; i++)
+{
+ 
+  output[x] = i + 1;
+  x++;
+}
+}
+return output;
+    
+}
 }
 	
