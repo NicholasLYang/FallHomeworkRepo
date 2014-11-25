@@ -2,6 +2,9 @@
  * Creates a word search puzzle
  *
  */
+import java.io.*;
+import java.util.*;
+
 public class WordSearch{
 
     private char[][] board;
@@ -31,136 +34,103 @@ public class WordSearch{
 	}
 	return s;
     }
-
-	
-    public boolean checkH(String w, int row, int col){
+    public boolean check(String w, int row, int col, int direction)
+    {
 	boolean print = true;
 	int r = row,c = col;
-	if (col + w.length() > board[0].length)
+	// horizontal
+	if (Math.abs(direction) == 0)
 	    {
-		return false;
+		print = !(col > board[0].length || row + w.length() > board.length);
+
 	    }
-	if (row > board.length)
+	// vertical
+	if (Math.abs(direction) == 1)
 	    {
-		return false;
+		print = !(col + w.length() > board[0].length || row > board.length);
 	    }
+	// left diagonal
+	if (Math.abs(direction) == 2)
+	    {
+		print = !(col + w.length() > board[0].length || row + w.length() > board.length);
+	    }
+	// right diagonal
+	if (Math.abs(direction) == 3)
+	    {
+		print = !(col - w.length() > 0 || row + w.length() > board.length);
+	    }
+
 	for (int i=0;i<w.length();i++){
 	    if (board[r][c] != '.') {
 		if(board[r][c] != w.charAt(i)){
 		    return false;
 		}
 	    }
-	    c++;
-	}
-	
-
-	return true;
-    }
-    public boolean checkLD(String w, int row, int col)
-    {
-      	boolean print = true;
-	int r = row,c = col;
-	if (col + w.length() > board[0].length)
-	    {
-		return false;
-	    }
-	if (row + w.length() > board.length)
-	    {
-		return false;
-	    }
-	for (int i=0;i<w.length();i++){
-	    if (board[r][c] != '.') {
-		if(board[r][c] != w.charAt(i)){
-		    return false;
-		}
-	    }
-	    r++;
-	    c++;
-	    
-	}
-	
-
-	return true;
-    }
-    public void addWordLD(String w, int row, int col)
-    {
-	int r=row,c=col;
-	if(checkLD(w,r,c))
-	    {
-		for (int i = 0; i < w.length(); i++)
+	  	// Horizontal
+		if (Math.abs(direction) == 0) c++;
+		// Vertical
+		if (Math.abs(direction) == 1) r++;
+		// Left Diagonal
+		if (Math.abs(direction) == 2) 
 		    {
-			board[r][c]=w.charAt(i);
 			r++;
 			c++;
 		    }
-	    }
-	else System.out.println("Conflict");
-    }
-    public void addReverseWordLD(String w, int row, int col)
-    {
-    
-       String reverse = new StringBuilder(w).reverse().toString();
-       this.addWordLD(reverse, row, col);
-    }
-    
-    public void addWordH(String w, int row, int col){
-	int r=row,c=col;
-	if(checkH(w,r,c)){
-	    for (int i = 0; i < w.length(); i++){
-		board[r][c]=w.charAt(i);
-		c++;
-	    }
-	}
-	else System.out.println("Conflict");
-    }
-    public void addReverseWordH(String w, int row, int col)
-    {
-	String reverse = new StringBuilder(w).reverse().toString();
-	
-	this.addWordH(reverse, row, col);
-
-    }
-    public boolean checkV(String w, int row, int col)
-    {
-
-	int r = row,c = col;
-	if (col > board[0].length)
-	    {
-		return false;
-	    }
-	if (row + w.length() > board.length)
-	    {
-		return false;
-	    }
-	for (int i=0;i<w.length();i++){
-	    if (board[r][c] != '.') {
-		if(board[r][c] != w.charAt(i)){
-		    return false;
-		}
-	    }
-	    r++;
+		// Right Diagonal
+		if (Math.abs(direction) == 3) 
+		    {
+			r++;
+			c--;
+		    }
 	}
 	
 
-	return true;
+	return print;
     }	
-    public void addWordV(String w, int row, int col)
+	
+
+    public void addWord(String w, int row, int col, int direction)
     {
 	int r = row;
 	int c = col;
-	if (this.checkV(w, r, c))
+	int d = direction;
+	if (this.check(w, r, c, d))
 	    {
+		String reverse = new StringBuilder(w).reverse().toString();
+	      	
+
 	    for (int i = 0; i < w.length(); i++){
-		board[r][c]=w.charAt(i);
-		r++;
+		 if (d < 0)
+		    {
+		
+			board[r][c] = reverse.charAt(i);
+		    }	
+		 else
+		     {
+			 board[r][c]=w.charAt(i);
+		     }
+		// Horizontal
+		if (Math.abs(d) == 0) c++;
+		// Vertical
+		if (Math.abs(d) == 1) r++;
+		// Left Diagonal
+		if (Math.abs(d) == 2) 
+		    {
+			r++;
+			c++;
+		    }
+		// Right Diagonal
+		if (Math.abs(d) == 3) 
+		    {
+			r++;
+			c--;
+		    }
+		
+			    
+		
 	    }
 	}
 	else System.out.println("Conflict");	
-    }
-    public void addReverseWordV(String w, int row, int col)
-    {
-	String reverse = new StringBuilder(w).reverse().toString();
-	this.addWordV(reverse, row, col);
     }
 	    
     public static void main(String[] args) {
@@ -168,13 +138,7 @@ public class WordSearch{
 	System.out.println(w);
 
 	
-	w.addWordH("help",3,5);
-	w.addReverseWordH("stuck",4,8);
-	w.addWordV("ina", 7, 5);
-	w.addReverseWordV("word", 6, 2);
-	w.addReverseWordLD("maker", 8, 8);
-      
-	w.addWordLD("maker", 1, 1);	
+	w.addWord("help",5,5,-2);
 	System.out.println(w);
     }
 }
