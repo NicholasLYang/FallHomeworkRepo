@@ -1,15 +1,18 @@
 public class Sarray {
     String[] data = {"a", "b", "c", "d"};
     String   last;
+    String first;
     
     public Sarray() {
         // set up the initial instance variables
 
 	last = "d";
+	first = "a";
     }
     public Sarray(String[] input) {
 	data = java.util.Arrays.copyOfRange(input, 0, input.length);
 	last = data[data.length - 1];
+	first = data[1];
 	    
     }
     public String toString()
@@ -58,7 +61,60 @@ public class Sarray {
 	    
 	
     }
+    public void selectSort(){
+	//  {"d", "c", "b", "a", "z"}
+	String min = new String();
+       	int index = 0;
+	for (int i = 0; i < data.length; i++)
+	    {
+		min = data[i];
+		index = i;
+		for (int j = i; j < data.length; j++)
+		    {
+		     
+			
+			if (min.compareTo(data[j]) > 0)
+			    {
+				
+				min = data[j];
+				index = j;
 
+			    }
+		    }
+		data[index] = data[i];
+		data[i] = min;
+	
+	      
+		
+	    }
+    }
+    public String min()
+    {
+	String min = new String();
+	int index = 0;
+	for (int j = 0; j < data.length; j++)
+	    {
+		if (min.compareTo(data[j]) >= 0)
+		    {
+		    
+			min = data[j];
+			index = j;
+		    }
+	    }
+	return min;
+    }
+    
+    public static void main(String[] args)
+    {
+	String[] input = {"d", "c", "b", "a", "z"};
+	Sarray s = new Sarray(input);
+	System.out.println(s);
+	s.selectSort();
+	System.out.println(s);
+
+    }
+	
+			
 
     
 }
