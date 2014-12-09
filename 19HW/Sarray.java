@@ -1,3 +1,5 @@
+import java.util.Random;
+import java.util.Arrays;
 public class Sarray {
     String[] data = {"a", "b", "c", "d"};
     String   last;
@@ -61,7 +63,8 @@ public class Sarray {
 	    
 	
     }
-    public void selectSort(){
+    public void selectSort()
+    {
 	//  {"d", "c", "b", "a", "z"}
 	String min = new String();
        	int index = 0;
@@ -88,28 +91,59 @@ public class Sarray {
 		
 	    }
     }
-    public String min()
+    public boolean sorted()
     {
-	String min = new String();
-	int index = 0;
-	for (int j = 0; j < data.length; j++)
+	for (int i = 0; i + 1 < data.length; i++)
 	    {
-		if (min.compareTo(data[j]) >= 0)
+		if (data[i].compareTo(data[i+1]) > 0)
 		    {
-		    
-			min = data[j];
-			index = j;
+			return false;
 		    }
 	    }
-	return min;
+	return true;
     }
-    
+    public void bubbleSort()
+    {
+	while (this.sorted() == false)
+	    {
+
+		for (int i = 0; i + 1 < data.length; i++)
+		    {
+			String temp = new String();
+			if (data[i].compareTo(data[i+1]) > 0)
+			    {
+				temp = data[i];
+				data[i] = data[i+1];
+				data[i+1] = temp;
+			    }
+		    }
+	    }
+    }
+    public void builtIn()
+    {
+	Arrays.sort(data);
+    }
+			    
+
     public static void main(String[] args)
     {
-	String[] input = {"d", "c", "b", "a", "z"};
-	Sarray s = new Sarray(input);
+
+	System.out.println("Adding elements to s");
+	Sarray s = new Sarray();
+	for (int i = 0; i < 2000; i++)
+	    {
+		Random r = new Random();
+		String st = new String();
+		st = ""+ r.nextInt(200000);
+		s.add(st);
+	    }
+	System.out.println("Here's s");
 	System.out.println(s);
-	s.selectSort();
+	System.out.println("Now here's the built in sort");
+	s.builtIn();
+	System.out.println(s);
+	System.out.println("Now here's the bubble sort");
+	s.bubbleSort();
 	System.out.println(s);
 
     }
