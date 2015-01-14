@@ -1,0 +1,5 @@
+https://github.com/jgelb/FinalProjectCheckers/blob/master/board.java
+
+Checkers by Joseph Gelb and Ari Hatzimemos
+
+The first part of the code with the visuals are setup is pretty confusing, comments would help explain what the characters are meant to do. I also don't see the point of the toString method. Moving is pretty easy to understand. To be honest, I feel a GUI wouldn't have been that hard, (and is still doable), but this is fine. For doMove there isn't a whole lot of comments and I don't get the purpose of the x's and o's. The computer's moves are understandable to an extent, but the code overall isn't very clear. 
